@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "581759805609",
+    "project_id": "we4u-afc8a",
+    "storage_bucket": "we4u-afc8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581759805609:android:b0282312ab6827a63be1b8",
+        "android_client_info": {
+          "package_name": "com.we4you.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581759805609-1d0ifk401p16tlp3lp8ali21rjr8aepd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARgmDFMbe1mmJSbcbOlbsq2jKmg06p_Bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581759805609-1d0ifk401p16tlp3lp8ali21rjr8aepd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
