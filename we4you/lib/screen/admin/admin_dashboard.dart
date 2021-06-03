@@ -14,7 +14,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        child: Text(" admin dash board onprogress..."),
+         child: Text("dash board onprogress..."),
       ),
     );
   }

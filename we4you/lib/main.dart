@@ -1,9 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:we4you/screen/admin/admin_dashboard.dart';
-import 'package:we4you/screen/patient/patient_dashboard.dart';
-import 'package:we4you/screen/doctor/doctor_dashboard.dart';
-import 'package:we4you/screen/pharmacy/pharmacy_dashboard.dart';
 import 'package:we4you/screen/admin/admin_register.dart';
 import 'package:we4you/screen/dash_board/dash_board.dart';
 import 'package:we4you/screen/doctor/doctor_register.dart';
@@ -19,8 +16,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  static String title;
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -48,9 +43,6 @@ class MyApp extends StatelessWidget {
         DashBoard.routeName: (context) => DashBoard(),
         AdminRegister.routeName: (context) => AdminRegister(),
         AdminDashboard.routeName: (context) => AdminDashboard(),
-        PatientDashboard.routeName: (context) => PatientDashboard(),
-        DoctorDashboard.routeName: (context) => DoctorDashboard(),
-        PharmacyDashboard.routeName: (context) => PharmacyDashboard(),
         LoginScreen.routeName: (context) => LoginScreen(),
         DoctorRegister.routeName: (context) => DoctorRegister(),
         PatientRegister.routeName: (context) => PatientRegister(),

@@ -59,8 +59,8 @@ class _PatientRegisterState extends State<PatientRegister> {
       height: 48,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: const Color(0xFFE65100),
-        border: Border.all(width: 1.0, color: const Color(0xFFE65100)),
+        color: const Color(0xff8cacb9),
+        border: Border.all(width: 1.0, color: const Color(0xff8cacb9)),
       ),
       child: Center(
         child: Loading(
@@ -203,7 +203,7 @@ class _PatientRegisterState extends State<PatientRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+         appBar: AppBar(
         backgroundColor: const Color(0xff8cacb9),
       ),
       body: SingleChildScrollView(
@@ -349,8 +349,7 @@ class _PatientRegisterState extends State<PatientRegister> {
                                     "user_type": "patient",
                                     // "specialised":_specialised.text.toString(),
                                     // "isAdmin": true,
-                                    "gender":
-                                        _groupValue == 0 ? "Male" : "Female",
+                                    "gender":_groupValue==0?"Male":"Female",
 
                                     "name":
                                         _firstnameController.text.toString(),
