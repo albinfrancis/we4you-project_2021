@@ -340,7 +340,6 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                                   password: _passwordController.text.toString(),
                                 )
                                     .then((v) async {
-                                  print("yo");
                                   print(v.user.uid);
                                   // print(place);
                                   var userId = v.user.uid;
@@ -357,6 +356,8 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                                     "id": userId,
                                     // "admin_id":adminController.text.toString(),
                                     "dob": _dob,
+                                    "daysAvailable": 'Mon - Sat',
+                                    "timeAvailable": '2:00 pm - 7:00 pm',
                                   };
                                   var result =
                                       curdObj.addUser("users", userId, data);

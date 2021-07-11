@@ -5,6 +5,7 @@ import 'package:we4you/screen/patient/Ordering/api/firebase_ml_api.dart';
 import 'package:we4you/screen/patient/Ordering/widget/text_area_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:we4you/screen/patientnew/homeView.dart';
 
 import 'controls_widget.dart';
 
@@ -64,7 +65,12 @@ class _TextRecognitionWidgetState extends State<TextRecognitionWidget> {
     final text = await FirebaseMLApi.recogniseText(image);
     setText(text);
 
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (context) => HomeView(
+                str: text,
+              )),
+    );
   }
 
   void clear() {

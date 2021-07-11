@@ -1,6 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:we4you/screen/doctor/settings.dart';
-import 'package:we4you/screen/pharmacy/orders.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
+import 'package:loading/loading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:we4you/modelz/orderz.dart';
+import 'package:we4you/screen/admin/OrdersWidget.dart';
+import 'package:we4you/utils/colors.dart';
+import 'package:we4you/utils/fcm.dart';
 
 class PharmacyDashboard extends StatefulWidget {
   PharmacyDashboard({Key key}) : super(key: key);
@@ -11,74 +17,123 @@ class PharmacyDashboard extends StatefulWidget {
 }
 
 class _PharmacyDashboardState extends State<PharmacyDashboard> {
+  List<OrderModel> orders = [];
+
+  showAlertDialog(BuildContext context) {
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Confirm"),
+      onPressed: () {
+        removeuserInfo();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Alert !!!"),
+      content: Text("Are you sure want to logout ?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  removeuserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('email');
+    prefs.remove('username');
+    prefs.remove('token');
+    prefs.remove('usertype');
+    Navigator.pushReplacementNamed(context, '/');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    PushNotificationsManager();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color(0xFFE65100), title: Text("We4you")),
-      body: new Container(
-        child: new Image.asset(
-          'assets/we.png',
-          height: 120,
-          width: 120,
-        ),
-        alignment: Alignment.center,
+        backgroundColor: const Color(0xFFE65100),
+        title: Text("we4you"),
+        elevation: .1,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.login_outlined,
+                size: 35,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                removeuserInfo();
+              }),
+        ],
       ),
-      drawer: new Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            new Container(
-              child: new UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: Colors.orange.shade900),
-                accountName: new Text('Pharmacy'),
-                accountEmail: new Text('pharmacy@gmail.com'),
-                currentAccountPicture: Icon(
-                  Icons.account_circle_outlined,
-                  size: 50,
-                ),
-              ),
-            ),
-            new ListTile(
-              leading: Icon(
-                Icons.book_online,
-                size: 35,
-              ),
-              title: Text('Orders'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) => new Orders()));
-              },
-            ),
-            new ListTile(
-              leading: Icon(
-                Icons.settings,
-                size: 35,
-              ),
-              title: Text('Settings'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) => new Settings()));
-              },
-            ),
-            new ListTile(
-              leading: Icon(
-                Icons.logout,
-                size: 35,
-              ),
-              title: Text('Logout'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/');
-              },
-            ),
-          ],
-        ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Column(children: [
+          SizedBox(
+            height: 60,
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'DashBoard',
+                    style: TextStyle(
+                        color: kcText,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              )),
+          StreamBuilder<QuerySnapshot>(
+              stream:
+                  FirebaseFirestore.instance.collection('orders').snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasData) {
+                  orders = [];
+                  snapshot.data.docs.forEach((element) {
+                    OrderModel product =
+                        OrderModel.fromMap(element.data(), element.id);
+                    orders.add(product);
+                  });
+
+                  return Flexible(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.all(20),
+                          itemCount: orders.length,
+                          itemBuilder: (buildContext, index) =>
+                              OrdersWidget(orderList: orders[index])));
+                } else {
+                  return Center(
+                    child: Loading(
+                      indicator: BallPulseIndicator(),
+                      size: 40.0,
+                      color: kcText,
+                    ),
+                  );
+                }
+              })
+        ]),
       ),
     );
   }

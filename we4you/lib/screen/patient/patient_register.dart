@@ -11,7 +11,6 @@ import 'package:we4you/screen/login_screen.dart';
 import 'package:we4you/services/curd.dart';
 import 'package:we4you/utils/colors.dart';
 import 'package:we4you/utils/toast_widget.dart';
-import 'dart:convert';
 
 class PatientRegister extends StatefulWidget {
   PatientRegister({Key key}) : super(key: key);
@@ -59,8 +58,8 @@ class _PatientRegisterState extends State<PatientRegister> {
       height: 48,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: const Color(0xff8cacb9),
-        border: Border.all(width: 1.0, color: const Color(0xff8cacb9)),
+        color: const Color(0xFFE65100),
+        border: Border.all(width: 1.0, color: const Color(0xFFE65100)),
       ),
       child: Center(
         child: Loading(
@@ -203,8 +202,8 @@ class _PatientRegisterState extends State<PatientRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-         appBar: AppBar(
-        backgroundColor: const Color(0xff8cacb9),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFE65100),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -220,7 +219,7 @@ class _PatientRegisterState extends State<PatientRegister> {
                         'create account',
                         style: TextStyle(
                           fontSize: 20,
-                          color: const Color(0xff8cacb9),
+                          color: const Color(0xFFE65100),
                           letterSpacing: 1.036,
                           fontWeight: FontWeight.w600,
                           height: 1.0714285714285714,
@@ -228,7 +227,7 @@ class _PatientRegisterState extends State<PatientRegister> {
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    // TextFormField(
+                    //TextFormField(
                     //   // obscureText: true,
                     //   keyboardType: TextInputType.emailAddress,
                     //   controller: adminController,
@@ -349,7 +348,8 @@ class _PatientRegisterState extends State<PatientRegister> {
                                     "user_type": "patient",
                                     // "specialised":_specialised.text.toString(),
                                     // "isAdmin": true,
-                                    "gender":_groupValue==0?"Male":"Female",
+                                    "gender":
+                                        _groupValue == 0 ? "Male" : "Female",
 
                                     "name":
                                         _firstnameController.text.toString(),
@@ -387,9 +387,9 @@ class _PatientRegisterState extends State<PatientRegister> {
                               height: 48.0,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5.0),
-                                color: const Color(0xff8cacb9),
+                                color: const Color(0xFFE65100),
                                 border: Border.all(
-                                    width: 1.0, color: const Color(0xff8cacb9)),
+                                    width: 1.0, color: const Color(0xFFE65100)),
                               ),
                               child: Center(
                                 child: Text(

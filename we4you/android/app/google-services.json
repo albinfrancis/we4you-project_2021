@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "581759805609",
+    "firebase_url": "https://we4u-afc8a-default-rtdb.firebaseio.com",
     "project_id": "we4u-afc8a",
     "storage_bucket": "we4u-afc8a.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "581759805609-1d0ifk401p16tlp3lp8ali21rjr8aepd.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "581759805609-q85gfgi4peq6nvmjk5uierjceee4bt8h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.we4you"
+              }
             }
           ]
         }

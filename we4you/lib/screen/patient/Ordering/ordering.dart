@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:we4you/screen/patient/Ordering/widget/text_recognition_widget.dart';
 
 class Ordering extends StatefulWidget {
